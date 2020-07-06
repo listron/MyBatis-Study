@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.listron.dao.StudentMapper">
+
+    <!--   第二种方式  一对多  一个老师对应多个学生 -->
+    <resultMap id="StudentMap" type="Student">
+        <id column="id" property="id"></id>
+        <result column="name" property="name"></result>
+        <result column="tid" property="tid"></result>
+    </resultMap>
+
+    <select id="getStudentByTeacherId" resultMap="StudentMap" parameterType="int">
+        select s.id,s.name from student s where s.tid=#{id};
+    </select>
+</mapper>
